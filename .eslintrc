@@ -1,0 +1,20 @@
+{
+  "plugins": ["security"],
+  "extends": ["standard", "plugin:node/recommended", "plugin:security/recommended"],
+  "rules": {
+      "node/exports-style": ["error", "module.exports"],
+      "node/prefer-global/buffer": ["error", "always"],
+      "node/prefer-global/console": ["error", "always"],
+      "node/prefer-global/process": ["error", "always"],
+      "node/prefer-global/url-search-params": ["error", "always"],
+      "node/prefer-global/url": ["error", "always"],
+      "semi": ["error", "always"],
+      "space-before-function-paren": ["error", {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "always"
+      }],
+      "quotes": ["error", "single"],
+      "eqeqeq": "warn"
+  }
+}
