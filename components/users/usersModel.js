@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
 // Local import
 const sequelize = require('../../db');
 
+// Code
 // Define user model
 const User = sequelize.define('user', {
   id: {

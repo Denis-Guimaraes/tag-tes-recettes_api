@@ -1,9 +1,9 @@
 // Code
-class UsersError {
+class MailerError {
   log(error) {
     console.log(error);
   }
 };
 
 // Export
-module.exports = new UsersError();
+module.exports = new MailerError();
