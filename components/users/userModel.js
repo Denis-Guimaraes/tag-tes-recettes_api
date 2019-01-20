@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
 // Local import
 const sequelize = require('../../db');
 
+// Code
 // Define user model
 const User = sequelize.define('user', {
   id: {
@@ -21,7 +22,7 @@ const User = sequelize.define('user', {
   password: {
     type: Sequelize.STRING
   },
-  status: {
+  active: {
     type: Sequelize.BOOLEAN
   },
   createdAt: {

@@ -2,9 +2,11 @@
 const Sequelize = require('sequelize');
 
 // Local import
-const config = require('./config');
+// eslint-disable-next-line node/no-unpublished-require
+const config = require('./dbConfig');
 
 // Code
+// configuration sequelize for connect database
 const sequelize = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
   dialect: config.dialect,
