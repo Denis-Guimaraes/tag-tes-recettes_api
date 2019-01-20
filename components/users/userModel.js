@@ -22,7 +22,7 @@ const User = sequelize.define('user', {
   password: {
     type: Sequelize.STRING
   },
-  status: {
+  active: {
     type: Sequelize.BOOLEAN
   },
   createdAt: {

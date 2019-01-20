@@ -1,9 +1,11 @@
 // Code
-class MailerError {
-  log(error) {
-    console.log(error);
-  }
+/**
+ * Function mailerError
+ * @param {*} error
+ */
+const mailerError = error => {
+  console.log(error);
 };
 
 // Export
-module.exports = new MailerError();
+module.exports = mailerError;

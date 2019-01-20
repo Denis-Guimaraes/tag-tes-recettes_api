@@ -19,7 +19,11 @@ oauth2Client.setCredentials({
   refresh_token: config.refreshToken
 });
 
-// Function for send email
+/**
+ * Function sendEmail
+ * @param {string} subject
+ * @param {string} content
+ */
 const sendEmail = async (subject, content) => {
   try {
     // Get authorisation Bearer
@@ -50,7 +54,7 @@ const sendEmail = async (subject, content) => {
     await smtpTransport.sendMail(mailOptions);
     smtpTransport.close();
   } catch (error) {
-    mailerError.log(error);
+    mailerError(error);
   }
 };
 
