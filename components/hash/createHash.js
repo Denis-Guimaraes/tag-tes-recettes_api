@@ -31,7 +31,7 @@ const dataValidator = (hashActionId, userId) => {
   } else {
     error.push('paramètre userId doit être un entier');
   }
-  // Return result or throw error
+  // Return result
   if (error.length <= 0) {
     return { ...data };
   } else {
