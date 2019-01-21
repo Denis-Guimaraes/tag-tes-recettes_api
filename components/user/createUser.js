@@ -57,7 +57,7 @@ const dataValidator = data => {
   } else {
     error.push('paramètre confirmPassword manquant');
   }
-  // Return result or throw error
+  // Return result
   if (error.length <= 0) {
     return { ...user };
   } else {
