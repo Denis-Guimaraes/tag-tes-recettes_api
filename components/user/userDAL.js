@@ -1,5 +1,5 @@
 // Local import
-const User = require('./userModel');
+const user = require('./userModel');
 
 // Code
 class UserDAL {
@@ -10,7 +10,7 @@ class UserDAL {
    * @param {string} password
    */
   createUser(username, email, password) {
-    return User.create({
+    return user.create({
       username,
       email,
       password
@@ -21,9 +21,19 @@ class UserDAL {
    * @param {string} email
    */
   findByEmail(email) {
-    return User.findOne({
+    return user.findOne({
       where: { email: email }
     });
+  }
+  /**
+   * Method activeUser
+   * @param {integer} userId
+   */
+  activeUser(userId) {
+    return user.update(
+      { active: 1 },
+      { where: { id: userId } }
+    );
   }
 }
 

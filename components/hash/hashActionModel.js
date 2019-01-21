@@ -5,25 +5,15 @@ const Sequelize = require('sequelize');
 const sequelize = require('../../db');
 
 // Code
-// Define user model
-const User = sequelize.define('user', {
+// Define hashAction model
+const hashAction = sequelize.define('hash_action', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  username: {
+  name: {
     type: Sequelize.STRING
-  },
-  email: {
-    type: Sequelize.STRING,
-    unique: true
-  },
-  password: {
-    type: Sequelize.STRING
-  },
-  active: {
-    type: Sequelize.BOOLEAN
   },
   createdAt: {
     type: Sequelize.DATE,
@@ -36,9 +26,7 @@ const User = sequelize.define('user', {
 },
 {
   freezeTableName: true
-}
-
-);
+});
 
 // Export
-module.exports = User;
+module.exports = hashAction;
