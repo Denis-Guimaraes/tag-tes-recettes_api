@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 // Local import
 const userError = require('./userError');
 const userDAL = require('./userDAL');
+const email = require('../email');
 
 // Code
 /**
@@ -85,7 +86,7 @@ const createUser = async data => {
   } catch (error) {
     // Log error
     userError(error);
-    // Return status and message
+    // Return status and data
     status = 500;
     body = { error: ['une erreur est survenue, veuillez réessayer !'] };
     return { status, body };
@@ -101,18 +102,17 @@ const createUser = async data => {
     }
     // Create new user
     const passwordHash = await bcrypt.hash(user.password, 10);
-    await userDAL.createUser(user.username, user.email, passwordHash);
+    const userCreated = await userDAL.createUser(user.username, user.email, passwordHash);
+    const userData = await userCreated.get();
+    // Send email for activate account
+    email.confirmEmail(userData.id);
     // Retrun status and data
     status = 200;
     body = { username: user.username, email: user.email };
     return { status, body };
   } catch (error) {
     // Log error
-    userError({
-      code: error.original.code,
-      errno: error.original.errno,
-      message: error.original.sqlMessage
-    });
+    userError(error);
     // Return status and message
     status = 500;
     body = { error: ['une erreur est survenue, veuillez réessayer !'] };
