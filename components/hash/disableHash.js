@@ -4,14 +4,14 @@ const hashDAL = require('./hashDAL');
 
 // Code
 /**
- * Function findHash
+ * Function disableHash
  * @param {string} uuid
  */
-const findHash = async uuid => {
+const disableHash = async uuid => {
   try {
-    // Get hash
-    const hash = await hashDAL.findOneHash(uuid);
-    return hash;
+    // Disable hash
+    await hashDAL.disableHash(uuid);
+    return true;
   } catch (error) {
     // Log error
     hashError(error);
@@ -20,4 +20,4 @@ const findHash = async uuid => {
 };
 
 // Export
-module.exports = findHash;
+module.exports = disableHash;

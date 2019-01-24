@@ -18,6 +18,9 @@ const hash = sequelize.define('hash', {
     type: Sequelize.STRING,
     unique: true
   },
+  active: {
+    type: Sequelize.BOOLEAN
+  },
   hash_action_id: {
     type: Sequelize.INTEGER
   },
