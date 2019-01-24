@@ -31,7 +31,7 @@ class UserDAL {
    */
   activeUser(userId) {
     return user.update(
-      { active: 1 },
+      { active: true },
       { where: { id: userId } }
     );
   }

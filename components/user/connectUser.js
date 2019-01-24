@@ -17,7 +17,7 @@ const connectUser = async data => {
     // Find user by email and check password
     const userFind = await userDAL.findByEmail(data.email);
     const password = bcrypt.compare(data.password, userFind.password);
-    if (userFind === null || !password) {
+    if (userFind === null || !password || !userFind.active) {
       // Return status and body
       status = 400;
       body = { error: ['email ou mot de passe incorrect'] };

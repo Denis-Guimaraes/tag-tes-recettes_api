@@ -5,13 +5,13 @@ const userDAL = require('./userDAL');
 // Code
 /**
  * Function activeUser
- * @param {strind} uuidUrl
+ * @param {strind} hashData
  */
 const activeUser = async hashData => {
   let status;
   let body;
   try {
-    if (hashData.hash_action_id === 1) {
+    if (hashData.hash_action_id === 1 && hashData.active) {
       await userDAL.activeUser(hashData.user_id);
       // Return status and data
       status = 200;
@@ -20,7 +20,7 @@ const activeUser = async hashData => {
       return { status, body };
     } else {
       // Return status and data
-      status = 400;
+      status = 404;
       body = `<P>lien inactif</p>
         <a href="http://localhost:8080">Tag tes recettes</a>`;
       return { status, body };

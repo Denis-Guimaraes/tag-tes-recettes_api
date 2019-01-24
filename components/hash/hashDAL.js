@@ -5,27 +5,37 @@ const hash = require('./hashModel');
 class HashDAL {
   /**
    * Method createHash
-   * @param {string} uuidUrl
+   * @param {string} uuid
    * @param {integer} hashActionId
    * @param {integer} userId
    */
-  createHash(uuidUrl, hashActionId, userId) {
+  createHash(uuid, hashActionId, userId) {
     return hash.create({
-      hash: uuidUrl,
+      hash: uuid,
       hash_action_id: hashActionId,
       user_id: userId
     });
   }
   /**
    * Method findOneHash
-   * @param {string} uuidUrl
+   * @param {string} uuid
    */
-  findOneHash(uuidUrl) {
+  findOneHash(uuid) {
     return hash.findOne({
       where: {
-        hash: uuidUrl
+        hash: uuid
       }
     });
+  }
+  /**
+   * Method disableHash
+   * @param {string} uuid
+   */
+  disableHash(uuid) {
+    return hash.update(
+      { active: false },
+      { where: { hash: uuid } }
+    );
   }
 }
 
