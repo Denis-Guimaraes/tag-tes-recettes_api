@@ -3,7 +3,7 @@
  * Function userError
  * @param {*} error
  */
-const userError = error => {
+const userError = (error) => {
   console.log(error);
 };
 

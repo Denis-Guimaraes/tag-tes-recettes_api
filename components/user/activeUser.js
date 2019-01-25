@@ -7,7 +7,7 @@ const userDAL = require('./userDAL');
  * Function activeUser
  * @param {strind} hashData
  */
-const activeUser = async hashData => {
+const activeUser = async (hashData) => {
   let status;
   let body;
   try {
@@ -15,13 +15,13 @@ const activeUser = async hashData => {
       await userDAL.activeUser(hashData.user_id);
       // Return status and data
       status = 200;
-      body = `<P>Votre compte a bien été activé !</p>
+      body = `<P>Votre compte a bien été activé!</p>
         <a href="http://localhost:8080">Tag tes recettes</a>`;
       return { status, body };
     } else {
       // Return status and data
       status = 404;
-      body = `<P>lien inactif</p>
+      body = `<P>Lien inactif.</p>
         <a href="http://localhost:8080">Tag tes recettes</a>`;
       return { status, body };
     }
@@ -30,7 +30,7 @@ const activeUser = async hashData => {
     userError(error);
     // Return status and data
     status = 500;
-    body = `<P>une erreur est survenue, veuillez réessayer !</p>
+    body = `<P>Une erreur est survenue, veuillez réessayer!</p>
     <a href="http://localhost:8080">Tag tes recettes</a>`;
     return { status, body };
   }

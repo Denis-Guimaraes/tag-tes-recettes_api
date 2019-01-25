@@ -7,13 +7,13 @@ const emailError = require('./emailError');
  * Function confirmEmail
  * @param {string} hash
  */
-const confirmEmail = async hash => {
+const confirmEmail = async (hash, userEmail) => {
   try {
     // Send confirmation email
-    const subject = 'Activation de votre compte sur TTR';
-    const content = `<P>Pour activer votre compte Tag tes recettes, veuillez suivre ce lien :</p>
+    const subject = 'Activation de votre compte sur TTR.';
+    const content = `<P>Pour activer votre compte Tag tes recettes, veuillez suivre ce lien:</p>
       <a href="http://localhost:3000/user/active/${hash}">http://localhost/user/active/${hash}</a>`;
-    await sendEmail(subject, content);
+    await sendEmail(userEmail, subject, content);
     return true;
   } catch (error) {
     // Log error

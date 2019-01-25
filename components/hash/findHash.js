@@ -7,7 +7,7 @@ const hashDAL = require('./hashDAL');
  * Function findHash
  * @param {string} uuid
  */
-const findHash = async uuid => {
+const findHash = async (uuid) => {
   try {
     // Get hash
     const hash = await hashDAL.findOneHash(uuid);

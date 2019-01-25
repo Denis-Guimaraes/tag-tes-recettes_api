@@ -18,14 +18,15 @@ router.post('/signup', checkSchema(userValidator.signupSchema), async (req, res)
   // Data validation
   const error = validationResult(req);
   if (!error.isEmpty()) {
-    return res.status(422).send(error.array());
+    const errorMessage = error.array().map(value => value.msg);
+    return res.status(422).send({ error: errorMessage });
   }
   // Create user and send confirmation email
   const data = await createUser(req.body);
   if (data.status === 200) {
     const getHash = await hash.createHash(1, data.id);
     const hashData = await getHash.get();
-    email.confirmEmail(hashData.hash);
+    email.confirmEmail(hashData.hash, data.body.userData.email);
   }
   res.status(data.status).send(data.body);
 });
@@ -34,7 +35,8 @@ router.get('/active/:hash', checkSchema(userValidator.activeSchema), async (req,
   // Data validation
   const error = validationResult(req);
   if (!error.isEmpty()) {
-    return res.status(422).send(error.array());
+    const errorMessage = error.array().map(value => value.msg);
+    return res.status(422).send({ error: errorMessage });
   }
   // Get hash data and active user
   const hashData = await hash.findHash(req.params.hash);
@@ -47,12 +49,13 @@ router.post('/signin', checkSchema(userValidator.signinSchema), async (req, res)
   // Data validation
   const error = validationResult(req);
   if (!error.isEmpty()) {
-    return res.status(422).send(error.array());
+    const errorMessage = error.array().map(value => value.msg);
+    return res.status(422).send({ error: errorMessage });
   }
   // Connect user and return JWT
   const data = await connectUser(req.body);
   if (data.status === 200) {
-    data.body.token = jwt.jwtSign(data.body);
+    data.body.userData.token = jwt.jwtSign(data.body);
   }
   res.status(data.status).send(data.body);
 });

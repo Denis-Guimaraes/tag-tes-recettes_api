@@ -7,7 +7,7 @@ const hashDAL = require('./hashDAL');
  * Function disableHash
  * @param {string} uuid
  */
-const disableHash = async uuid => {
+const disableHash = async (uuid) => {
   try {
     // Disable hash
     await hashDAL.disableHash(uuid);

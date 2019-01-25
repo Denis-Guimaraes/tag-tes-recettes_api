@@ -3,7 +3,7 @@
  * Function hashError
  * @param {*} error
  */
-const hashError = error => {
+const hashError = (error) => {
   console.log(error);
 };
 

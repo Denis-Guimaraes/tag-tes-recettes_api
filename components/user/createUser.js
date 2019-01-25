@@ -10,7 +10,7 @@ const userDAL = require('./userDAL');
  * Function createUser
  * @param {object} data
  */
-const createUser = async data => {
+const createUser = async (data) => {
   let status;
   let body;
   try {
@@ -18,13 +18,13 @@ const createUser = async data => {
     const userFind = await userDAL.findByEmail(data.email);
     if (userFind !== null) {
       status = 400;
-      body = { error: ['email déjà lié à un compte utilisateur'] };
+      body = { error: ['Email déjà lié à un compte utilisateur.'] };
       return { status, body };
     }
     // Check if password match confirmPasswor
     if (data.password !== data.confirmPassword) {
       status = 400;
-      body = { error: ['erreur confirmation de mot de passe'] };
+      body = { error: ['Erreur confirmation de mot de passe.'] };
       return { status, body };
     }
     // Create new user
@@ -34,14 +34,17 @@ const createUser = async data => {
     // Retrun status and data
     status = 200;
     const id = userData.id;
-    body = { username: data.username, email: data.email };
+    body = {
+      userData: { username: userData.username, email: userData.email },
+      message: [`Pour compléter votre inscription, veuillez suivre le lien qui vous a été envoyé à votre adresse ${userData.email} afin d'activer votre compte.`]
+    };
     return { status, id, body };
   } catch (error) {
     // Log error
     userError(error);
     // Return status and message
     status = 500;
-    body = { error: ['une erreur est survenue, veuillez réessayer !'] };
+    body = { error: ['Une erreur est survenue, veuillez réessayer!'] };
     return { status, body };
   }
 };

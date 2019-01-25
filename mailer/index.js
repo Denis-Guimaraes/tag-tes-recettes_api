@@ -24,7 +24,7 @@ oauth2Client.setCredentials({
  * @param {string} subject
  * @param {string} content
  */
-const sendEmail = async (subject, content) => {
+const sendEmail = async (userEmail, subject, content) => {
   try {
     // Get authorisation Bearer
     const Bearer = await oauth2Client.getRequestHeaders();
@@ -45,7 +45,7 @@ const sendEmail = async (subject, content) => {
     // Configuration email content
     const mailOptions = {
       from: config.email,
-      to: config.email,
+      to: userEmail,
       subject: subject,
       generateTextFromHTML: true,
       html: content

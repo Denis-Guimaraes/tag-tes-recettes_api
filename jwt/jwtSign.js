@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
  * Function jwtSign
  * @param {object} user
  */
-const jwtSign = user => {
+const jwtSign = (user) => {
   // Define payload
   const payload = {
     id: user.id,

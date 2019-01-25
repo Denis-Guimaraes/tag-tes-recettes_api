@@ -3,7 +3,7 @@
  * Function mailerError
  * @param {*} error
  */
-const mailerError = error => {
+const mailerError = (error) => {
   console.log(error);
 };
 

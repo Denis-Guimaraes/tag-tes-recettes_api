@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
  * Function jwtVerify
  * @param {string} token
  */
-const jwtVerify = token => {
+const jwtVerify = (token) => {
   // Define verify options
   const options = {
     issuer: 'Tag tes recettes',
