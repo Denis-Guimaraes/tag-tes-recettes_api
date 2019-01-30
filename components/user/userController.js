@@ -20,17 +20,17 @@ const signup = async (body) => {
     const getHash = await hashService.createHash(1, data.user.id);
     data.hash = getHash.get('hash');
     // Send email
-    emailService.confirmEmail(data.hash, data.user.email);
+    await emailService.confirmEmail(data.hash, data.user.email);
     // Return data
     return data;
   } catch (error) {
-    userService.deleteUser(data.user.id);
+    await userService.deleteUser(data.user.id);
     throw error;
   }
 };
 /**
  * Function active
- * @param {string uuidV4} params
+ * @param {string} params
  */
 const active = async (params) => {
   // Get hash data
@@ -38,7 +38,7 @@ const active = async (params) => {
   // Active user
   const data = await userService.activeUser(hash);
   // Disable hash
-  hashService.disableHash(hash.hash);
+  await hashService.disableHash(hash.hash);
   // Return data
   return data;
 };
