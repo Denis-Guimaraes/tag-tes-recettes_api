@@ -1,5 +1,5 @@
 // Local import
-const sendEmail = require('../../mailer');
+const { sendEmail } = require('../../lib');
 
 // Code
 /**

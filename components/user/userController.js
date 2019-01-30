@@ -2,7 +2,7 @@
 const userService = require('./userService');
 const hashService = require('../hash');
 const emailService = require('../email');
-const jwt = require('../../jwt');
+const { jwt } = require('../../lib');
 
 // Code
 /**
