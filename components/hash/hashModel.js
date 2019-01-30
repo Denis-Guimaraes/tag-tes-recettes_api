@@ -2,7 +2,7 @@
 const Sequelize = require('sequelize');
 
 // Local import
-const sequelize = require('../../db');
+const { sequelize } = require('../../lib');
 const hashAction = require('./hashActionModel');
 const user = require('../user/userModel');
 

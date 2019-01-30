@@ -1,9 +1,5 @@
 // Local import
-const createHash = require('./createHash');
-const findHash = require('./findHash');
-const disableHash = require('./disableHash');
+const hashService = require('./hashService');
 
 // Export
-module.exports.createHash = createHash;
-module.exports.findHash = findHash;
-module.exports.disableHash = disableHash;
+module.exports = hashService;

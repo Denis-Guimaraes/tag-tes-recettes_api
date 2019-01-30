@@ -7,5 +7,5 @@ Thumbs.db
 
 yarn-error.log
 
-*Config.js
+.env
 *.key
