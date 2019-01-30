@@ -1,5 +1,5 @@
 // Local import
-const confirmEmail = require('./confirmEmail');
+const emailService = require('./emailService');
 
 // Export
-module.exports.confirmEmail = confirmEmail;
+module.exports = emailService;
