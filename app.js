@@ -4,7 +4,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 // Local import
-const userRouter = require('./components/user');
+const { userRouter } = require('./components/user');
+const { bookRouter } = require('./components/book');
 
 // Code
 const app = express();
@@ -22,6 +23,7 @@ app.use(function(req, res, next) {
 
 // Router
 app.use('/users', userRouter);
+app.use('/books', bookRouter);
 
 // Export
 module.exports = app;
