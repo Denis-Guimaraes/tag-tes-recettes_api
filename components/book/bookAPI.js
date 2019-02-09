@@ -31,6 +31,17 @@ router.get('/', async (req, res, next) => {
     next(error);
   }
 });
+// Route for get all recipes of book
+router.get('/:bookId/recipes', async (req, res, next) => {
+  try {
+    const { bookId } = req.params;
+    const { userId } = req.body;
+    const data = await bookController.findAllRecipes(bookId, userId);
+    res.status(200).send(data);
+  } catch (error) {
+    next(error);
+  }
+});
 // Error handler
 router.use(bookError);
 

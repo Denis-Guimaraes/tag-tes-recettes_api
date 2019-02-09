@@ -1,5 +1,5 @@
 // Local import
-const router = require('./bookAPI');
+const bookRouter = require('./bookAPI');
 
 // Export
-module.exports = router;
+module.exports.bookRouter = bookRouter;

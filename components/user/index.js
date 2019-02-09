@@ -1,5 +1,5 @@
 // Local import
-const router = require('./userAPI');
+const userRouter = require('./userAPI');
 
 // Export
-module.exports = router;
+module.exports.userRouter = userRouter;
