@@ -3,24 +3,18 @@ const Sequelize = require('sequelize');
 
 // Local import
 const { sequelize } = require('../../lib');
-const bookType = require('./bookTypeModel');
 
 // Code
-// Define book model
-const book = sequelize.define('book', {
+// Define tag model
+const tag = sequelize.define('tag', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
   name: {
-    type: Sequelize.STRING
-  },
-  book_type_id: {
-    type: Sequelize.INTEGER
-  },
-  user_id: {
-    type: Sequelize.INTEGER
+    type: Sequelize.STRING,
+    unique: true
   },
   createdAt: {
     type: Sequelize.DATE,
@@ -35,9 +29,5 @@ const book = sequelize.define('book', {
   freezeTableName: true
 });
 
-// Define foreign key
-book.belongsTo(bookType, { as: 'type', foreignKey: 'book_type_id' });
-bookType.hasMany(book, { as: 'book', foreignKey: 'id' });
-
 // Export
-module.exports = book;
+module.exports = tag;

@@ -15,5 +15,16 @@ const dataValidator = (req, res, next) => {
   }
   next();
 };
+// Schema validator /:bookId/*
+const bookSchema = {
+  bookId: {
+    in: ['params'],
+    exists: true,
+    isInt: true,
+    toInt: true,
+    errorMessage: 'Id livre invalide.'
+  }
+};
 
 module.exports.dataValidator = dataValidator;
+module.exports.bookSchema = bookSchema;

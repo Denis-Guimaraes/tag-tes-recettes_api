@@ -5,7 +5,8 @@ const Sequelize = require('sequelize');
 const { sequelize } = require('../../lib');
 const book = require('../book/bookModel');
 const recipeType = require('./recipeTypeModel');
-const user = require('../user/userModel');
+const recipeTag = require('./recipeTagModel');
+const tag = require('../tag/tagModel');
 
 // Code
 // Define recipe model
@@ -51,8 +52,8 @@ recipe.belongsTo(book, { as: 'book', foreignKey: 'book_id' });
 book.hasMany(recipe, { as: 'recipe', foreignKey: 'id' });
 recipe.belongsTo(recipeType, { as: 'type', foreignKey: 'recipe_type_id' });
 recipeType.hasMany(recipe, { as: 'recipe', foreignKey: 'id' });
-recipe.belongsTo(user, { as: 'user', foreignKey: 'user_id' });
-user.hasMany(recipe, { as: 'recipe', foreignKey: 'id' });
+recipe.belongsToMany(tag, { through: recipeTag, foreignKey: 'recipe_id' });
+tag.belongsToMany(recipe, { through: recipeTag, foreignKey: 'tag_id' });
 
 // Export
 module.exports = recipe;

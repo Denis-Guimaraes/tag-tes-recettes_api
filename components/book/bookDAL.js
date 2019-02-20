@@ -15,6 +15,19 @@ const findAll = (userId) => {
     ]
   });
 };
+/**
+ * Function findOrCreate
+ * @param {integer} userId
+ * @param {string} bookName
+ * @param {integer} bookType
+ */
+const findOrCreate = (userId, bookName, bookType) => {
+  return book.findOrCreate({
+    raw: true,
+    where: { user_id: userId, name: bookName, book_type_id: bookType }
+  });
+};
 
 // Export
 module.exports.findAll = findAll;
+module.exports.findOrCreate = findOrCreate;
