@@ -1,8 +1,10 @@
 // NPM import
 const express = require('express');
+const { checkSchema } = require('express-validator/check');
 
 // Local import
 const { jwt } = require('../../lib');
+const { bookSchema, dataValidator } = require('./dataValidator');
 const bookController = require('./bookController');
 const bookError = require('./bookError');
 
@@ -17,7 +19,7 @@ router.use((req, res, next) => {
     next();
   } catch (error) {
     error.name = 'UnauthorizedError';
-    error.messages = error.message;
+    error.messages = [error.message];
     next(error);
   }
 });
@@ -31,8 +33,8 @@ router.get('/', async (req, res, next) => {
     next(error);
   }
 });
-// Route for get all recipes of book
-router.get('/:bookId/recipes', async (req, res, next) => {
+// Route for get all recipes from one book
+router.get('/:bookId/recipes', [checkSchema(bookSchema), dataValidator], async (req, res, next) => {
   try {
     const { bookId } = req.params;
     const { userId } = req.body;

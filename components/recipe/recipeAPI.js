@@ -3,6 +3,7 @@ const express = require('express');
 
 // Local import
 const { jwt } = require('../../lib');
+const recipeController = require('./recipeController');
 const recipeError = require('./recipeError');
 
 // Code
@@ -17,6 +18,16 @@ router.use((req, res, next) => {
   } catch (error) {
     error.name = 'UnauthorizedError';
     error.messages = error.message;
+    next(error);
+  }
+});
+// Route for get all favorites recipes
+router.get('/favorites', async (req, res, next) => {
+  try {
+    const { userId } = req.body;
+    const data = await recipeController.findAllFavorites(userId);
+    res.status(200).send(data);
+  } catch (error) {
     next(error);
   }
 });

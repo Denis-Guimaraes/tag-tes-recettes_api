@@ -6,12 +6,11 @@ const book = require('../book/bookModel');
 // Code
 /**
  * Function findAll
- * @param {integer} bookId
- * @param {integer} userId
+ * @param {object} paramsWhere
  */
-const findAll = (bookId, userId) => {
+const findAll = (paramsWhere) => {
   return recipe.findAll({
-    where: { book_id: bookId, user_id: userId },
+    where: paramsWhere,
     include: [
       { model: book, as: 'book', attributes: ['id', 'name'] },
       { model: recipeType, as: 'type', attributes: ['id', 'name'] }

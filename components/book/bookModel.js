@@ -4,7 +4,6 @@ const Sequelize = require('sequelize');
 // Local import
 const { sequelize } = require('../../lib');
 const bookType = require('./bookTypeModel');
-const user = require('../user/userModel');
 
 // Code
 // Define book model
@@ -39,8 +38,6 @@ const book = sequelize.define('book', {
 // Define foreign key
 book.belongsTo(bookType, { as: 'type', foreignKey: 'book_type_id' });
 bookType.hasMany(book, { as: 'book', foreignKey: 'id' });
-book.belongsTo(user, { as: 'user', foreignKey: 'user_id' });
-user.hasMany(book, { as: 'book', foreignKey: 'id' });
 
 // Export
 module.exports = book;
