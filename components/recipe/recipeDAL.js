@@ -1,6 +1,7 @@
 // Local import
 const recipe = require('./recipeModel');
 const recipeType = require('./recipeTypeModel');
+const tag = require('../tag/tagModel');
 const book = require('../book/bookModel');
 
 // Code
@@ -13,7 +14,8 @@ const findAll = (paramsWhere) => {
     where: paramsWhere,
     include: [
       { model: book, as: 'book', attributes: ['id', 'name'] },
-      { model: recipeType, as: 'type', attributes: ['id', 'name'] }
+      { model: recipeType, as: 'type', attributes: ['id', 'name'] },
+      { model: tag, attributes: ['id', 'name'], through: { attributes: [] } }
     ]
   });
 };
