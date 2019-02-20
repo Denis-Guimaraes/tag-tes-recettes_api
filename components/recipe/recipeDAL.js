@@ -1,6 +1,7 @@
 // Local import
 const recipe = require('./recipeModel');
 const recipeType = require('./recipeTypeModel');
+const recipeTag = require('./recipeTagModel');
 const tag = require('../tag/tagModel');
 const book = require('../book/bookModel');
 
@@ -19,6 +20,26 @@ const findAll = (paramsWhere) => {
     ]
   });
 };
+/**
+ * Function create
+ * @param {object} recipeData
+ */
+const create = (recipeData) => {
+  return recipe.create(recipeData);
+};
+/**
+ * Function createRecipeTag
+ * @param {integer} recipeId
+ * @param {integer} tagId
+ */
+const createRecipeTag = (recipeId, tagId) => {
+  return recipeTag.create({
+    recipe_id: recipeId,
+    tag_id: tagId
+  });
+};
 
 // Export
 module.exports.findAll = findAll;
+module.exports.create = create;
+module.exports.createRecipeTag = createRecipeTag;
